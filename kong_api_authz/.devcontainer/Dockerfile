@@ -18,7 +18,7 @@ RUN wget -O - http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz | tar -zxf - \
     && make install
 
 # download and unpack the LuaRocks tarball
-RUN wget --no-check-certificate -O - https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz | tar -zxpf - \
+RUN wget --no-check-certificate -O - http://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz | tar -zxpf - \
     && cd luarocks-${LUAROCKS_VERSION}/ \
     && ./configure \
     && make build \

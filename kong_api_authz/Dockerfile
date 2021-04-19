@@ -1,4 +1,4 @@
-FROM kong:2.0
+FROM kong-docker-kong-gateway-docker.bintray.io/kong-enterprise-edition:2.3.2.0-alpine
 
 LABEL org.wada.name="openpolicyagent/demo-kong-plugin-opa"
 LABEL org.wada.description="Kong image with kong-plugin-opa installed"

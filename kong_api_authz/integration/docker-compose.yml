@@ -48,3 +48,14 @@ services:
     command: "run --server --log-level debug"
     ports:
       - "8181:8181"
+
+  # Konag ui
+  konga:
+    image: pantsel/konga
+    ports:
+      - 1337:1337
+    links:
+      - kong:kong
+    container_name: konga
+    environment:
+      - NODE_ENV=production

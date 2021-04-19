@@ -16,7 +16,7 @@ description = {
 dependencies = {
    "lua-cjson",
    "lua-resty-http",
-   "lua-resty-jwt",
+   " lua-resty-jwt ~> 0.2.2-0",
 }
 test_dependencies = {
    "luacov",
