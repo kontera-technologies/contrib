@@ -46,7 +46,7 @@ function _M.execute(conf)
 
     -- decode JWT token
     local token = {}
-    if authorization and string.find(authorization, "Bearer") then
+    if authorization then
         local encoded_token = authorization:gsub("Bearer ", "")
         token = jwt:load_jwt(encoded_token)
     end
@@ -75,7 +75,6 @@ function _M.execute(conf)
     kong.log.debug(interp("Access allowed to ${method} ${path} for user ${subject}", {
         method = input.method,
         path = input.path,
-        subject = token.payload.sub
     }))
 end
 
