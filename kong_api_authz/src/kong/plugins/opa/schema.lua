@@ -75,6 +75,12 @@ return {
                     required = true
                   },
                 },
+                {
+                  baggage_key_in_result = {
+                    type = "string",
+                    default = "baggage"
+                  },
+                },
               },
             },
           },

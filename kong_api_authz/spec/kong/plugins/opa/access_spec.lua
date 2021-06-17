@@ -54,6 +54,15 @@ describe("opa:access", function()
     assert.is_nil(res)
   end)
 
+  -- it("allow access return baggae in header - default key ", function()
+  --   _G.ngx.var.upstream_uri = "/api/endpoint/baggage"
+  --   local res = access.execute(conf)
+  --   print("lee -spec res")
+  --   print(res)
+  --   -- assert.request(res).has.header("baggage")
+  --   -- assert.is_true(res.headers["baggage"] == "BASE64_JWT_INTERNAL")
+  -- end)
+
   it("returns 403 when request is forbidden", function()
     -- using "/not_allowed" will force fake-http module to mock a negative decision
     _G.ngx.var.upstream_uri = "/api/endpoint/not_allowed"
