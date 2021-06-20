@@ -81,15 +81,15 @@ function _M.execute(conf)
     if type(res.result) == "table" then
         local baggage_key = conf.policy.baggage_key_in_result
         if res.result[baggage_key] ~= nil then
-            inject_header(baggage_key,res.result.baggage)
+            inject_header(baggage_key,res.result[baggage_key])
             kong.log.debug(interp("Baggage header injected ${baggage}", {
-                baggage = res.result.baggage
+                baggage = res.result[baggage_key]
             }))
         end
     end
 
     -- access allowed
-    kong.log.debug(interp("Access 2 allowed to ${method} ${path} for user ${subject}", {
+    kong.log.debug(interp("Access allowed to ${method} ${path} for user ${subject}", {
         method = input.method,
         path = input.path,
     }))
