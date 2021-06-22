@@ -1,6 +1,6 @@
 rockspec_format = "3.0"
 package = "kong-plugin-opa"
-version = "0.1.1-4"
+version = "0.1.1"
 source = {
    url = "git+https://github.com/open-policy-agent/contrib.git",
    tag = "v0.1.1",
