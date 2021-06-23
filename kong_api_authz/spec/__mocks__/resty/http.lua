@@ -19,6 +19,10 @@ function _M.request_uri(self, uri, params)
         -- when the document does not evaluate to true,
         -- the response will not contain the result property
         res.body = '{}'
+    elseif (params.body:find("/baggage")) then
+        -- return baggage from opa as string
+        -- the response will contain baggage property
+        res.body = '{ "result": { "baggage": "BASE64_JWT_INTERNAL" } }'
     else
         -- when the document evaluates to true,
         -- an element is produced in the result

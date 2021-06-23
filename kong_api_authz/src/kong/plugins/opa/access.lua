@@ -38,6 +38,12 @@ local function getDocument(input, conf)
     return assert(cjson_safe.decode(res.body))
 end
 
+local function inject_header(key, value)
+    assert(type(key) == "string", "header key is not a string")
+    assert(type(value) == "string", "header value is not a string")
+    kong.service.request.set_header(key , value)
+end
+
 -- module
 local _M = {}
 
@@ -69,6 +75,17 @@ function _M.execute(conf)
     if not res.result then
         kong.log.info("Access forbidden")
         return kong.response.exit(403, [[{"message":"Access Forbidden"}]])
+    end
+
+    -- inject baggage
+    if type(res.result) == "table" then
+        local baggage_key = conf.policy.baggage_key_in_result
+        if res.result[baggage_key] ~= nil then
+            inject_header(baggage_key,res.result[baggage_key])
+            kong.log.debug(interp("Baggage header injected ${baggage}", {
+                baggage = res.result[baggage_key]
+            }))
+        end
     end
 
     -- access allowed
